@@ -2,16 +2,20 @@ import {Image, Text, TouchableNativeFeedback, View} from "react-native";
 import React from "react";
 import * as Icon from "react-native-feather";
 import {themeColors} from "../theme";
+import { useNavigation } from '@react-navigation/native';
 
 export default function RestaurantCard({item}) {
+    const navigation = useNavigation();
     return (
-        <TouchableNativeFeedback>
+        <TouchableNativeFeedback
+            onPress={()=> navigation.navigate('Restaurant', {...item})}
+        >
             <View
                 style={{
                     shadowColor: themeColors.bgColor(0.2),
                     shadowRadius: 7
-            }}
-                  className="mr-6 bg-white rounded-3xl shadow-lg">
+                }}
+                className="mr-6 bg-white rounded-3xl shadow-lg">
                 <Image className="h-36 w-64 rounded-t-3xl" source={item.image} />
                 <View className="px-3 pb-4 space-y-2">
                     <Text className="text-lg font-bold pt-2">{item.name}</Text>
