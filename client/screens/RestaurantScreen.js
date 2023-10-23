@@ -1,4 +1,4 @@
-import {View, Text, ScrollView, Image, TouchableOpacity} from "react-native";
+import {View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React from "react";
 //import { Image } from "react-native-feather";
 import { useNavigation, useRoute} from '@react-navigation/native'
@@ -6,8 +6,7 @@ import * as Icon from "react-native-feather";
 import {themeColors} from "../theme";
 import DishRow from "../components/dishRow";
 import CartIcon from "../components/carticon";
-
-
+import { StatusBar } from "expo-status-bar";
 
 
 export default function RestaurantScreen() {
@@ -17,6 +16,8 @@ export default function RestaurantScreen() {
     return (
         <View>
             <CartIcon/>
+
+            <StatusBar style='light' />
             <ScrollView>
                 <View className="relative">
                     <Image className="w-full h-72" source={item.image} />
