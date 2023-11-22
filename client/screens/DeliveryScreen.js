@@ -1,17 +1,17 @@
 import { View, Text, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
+import { featured } from '../constants'
 import { useNavigation } from '@react-navigation/native'
 import MapView, {Marker} from 'react-native-maps';
 import { themeColors } from '../theme';
 import * as Icon from "react-native-feather";
-import { useDispatch, useSelector } from 'react-redux';
-import { selectRestaurant } from '../slices/restaurantSlice';
+import { useDispatch } from 'react-redux';
 import { emptyCart } from '../slices/cartSlice';
 
 
 export default function DeliveryScreen() {
     const navigation = useNavigation();
-    const restaurant = useSelector(selectRestaurant);
+    const restaurant = featured.restaurants[0];
     const dispatch = useDispatch();
     const cancelOrder = ()=>{
       dispatch(emptyCart());
@@ -46,9 +46,9 @@ export default function DeliveryScreen() {
           </TouchableOpacity>
           <View className="flex-row justify-between px-5 pt-10">
               <View>
-                  <Text className="text-lg text-gray-700 font-semibold">Estimated Arrival</Text>
-                  <Text className="text-3xl font-extrabold text-gray-700">20-30 Minutes</Text>
-                  <Text className="mt-2 text-gray-700 font-semibold">Your Order is own its way</Text>
+                  <Text className="text-lg text-gray-700 font-semibold">Tempoa para Chegada:</Text>
+                  <Text className="text-3xl font-extrabold text-gray-700">20-30 Minutos</Text>
+                  <Text className="mt-2 text-gray-700 font-semibold">Seu pedido é do seu jeito</Text>
               </View>
               <Image className="h-24 w-24" source={require('../assets/images/bikeGuy2.gif')} />
           </View>
@@ -61,8 +61,8 @@ export default function DeliveryScreen() {
             </View>
             
             <View className="flex-1 ml-3">
-                <Text className="text-lg font-bold text-white">Syed Noman</Text>
-                <Text className="text-white font-semibold">Your Rider</Text>
+                <Text className="text-lg font-bold text-white">Roberto Santos</Text>
+                <Text className="text-white font-semibold">Seu entregador</Text>
             </View>
             <View  className="flex-row items-center space-x-3 mr-3">
               <TouchableOpacity className="bg-white p-2 rounded-full">

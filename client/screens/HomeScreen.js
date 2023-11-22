@@ -7,7 +7,19 @@ import {themeColors} from "../theme";
 import Categories from "../components/categories";
 import {featured} from "../constants";
 import FeaturedRow from "../components/featuredRow";
+import { useEffect } from "react";
+import { getFeaturedRestaurantById, getFeaturedRestaurants } from "../api";
+import { useState } from "react";
 export default function HomeScreen() {
+
+    const [feautredRestaurants, setFeaturedRestaurants] = useState([])
+
+    useEffect(() => {
+        getFeaturedRestaurants().then(data=> {
+            setFeaturedRestaurants(data)
+        })
+    }, [])
+
     return (
         <SafeAreaView class="bg-white">
             <StatusBar barStyle="dark-cotent"/>
@@ -18,7 +30,7 @@ export default function HomeScreen() {
                     <TextInput placeholder="Restaurants" className="ml-2 flex-1" />
                     <View className="flex-row items-center space-x-1 border-0 border-l-2 pl-2 border-l-gray-300">
                         <Icon.MapPin height="20" width="20" stroke="gray" />
-                        <Text className="text-gray-600">New York, NY</Text>
+                        <Text className="text-gray-600">Goiânia, GO</Text>
                     </View>
                 </View>
 
@@ -40,11 +52,11 @@ export default function HomeScreen() {
                 {/*featured*/}
                 <View className="mt-5">
                     {
-                        [featured, featured, featured].map((item, index) => {
+                        feautredRestaurants.map((item, index) => {
                             return (
                                 <FeaturedRow
                                     key={index}
-                                    title={item.title}
+                                    title={item.name}
                                     restaurants={item.restaurants}
                                     description={item.description}
                                 />
